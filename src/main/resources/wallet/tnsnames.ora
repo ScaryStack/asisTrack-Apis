@@ -1,0 +1,12 @@
+asistrack_high = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-santiago-1.oraclecloud.com))(connect_data=(service_name=g123eb5a79bc5f8_asistrack_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+asistrack_low = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-santiago-1.oraclecloud.com))(connect_data=(service_name=g123eb5a79bc5f8_asistrack_low.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+asistrack_medium = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-santiago-1.oraclecloud.com))(connect_data=(service_name=g123eb5a79bc5f8_asistrack_medium.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+asistrack_tp = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-santiago-1.oraclecloud.com))(connect_data=(service_name=g123eb5a79bc5f8_asistrack_tp.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+asistrack_tpurgent = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-santiago-1.oraclecloud.com))(connect_data=(service_name=g123eb5a79bc5f8_asistrack_tpurgent.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+
+
