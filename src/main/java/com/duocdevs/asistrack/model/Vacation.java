@@ -1,5 +1,6 @@
 package com.duocdevs.asistrack.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,5 +28,6 @@ public class Vacation {
     @OneToOne
     @MapsId
     @JoinColumn(name = "idRequest")
+    @JsonBackReference
     private Request request;
 }

@@ -1,5 +1,6 @@
 package com.duocdevs.asistrack.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,23 +14,25 @@ import java.util.Date;
 @AllArgsConstructor
 public class Permission {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idRequest")
     private Integer idRequest;
 
     @Column(unique = true)
     private Integer idPermission;
 
-    @Column(nullable = false, length = 500)
+    @Column(nullable = false)
     private String reason;
 
-    @Column(nullable = false)
+    @Column(name = "fecha", nullable = false)
     private Date date;
 
-    @Column(nullable = false)
+    @Column(name = "hora_registro", nullable = false)
     private Date hour;
 
     @OneToOne
     @MapsId
     @JoinColumn(name = "idRequest")
+    @JsonBackReference
     private Request request;
 }

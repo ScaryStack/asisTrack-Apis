@@ -1,5 +1,6 @@
 package com.duocdevs.asistrack.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,9 +18,10 @@ public class IncidentType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idTyeIn;
 
-    @Column(nullable = false, length = 30)
+    @Column(name = "tipo", nullable = false)
     private String type;
 
     @OneToMany(mappedBy = "incidentType")
+    @JsonManagedReference
     private List<Incident> incidents;
 }

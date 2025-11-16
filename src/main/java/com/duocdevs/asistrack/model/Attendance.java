@@ -17,10 +17,10 @@ public class Attendance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idAttendance;
 
-    @Column(nullable = false)
+    @Column(name = "fecha", nullable = false)
     private Date date;
 
-    @Column(nullable = false)
+    @Column(name = "hora_registro", nullable = false)
     private Date hour;
 
     private String location;

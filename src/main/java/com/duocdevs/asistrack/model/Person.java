@@ -1,9 +1,12 @@
 package com.duocdevs.asistrack.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "PERSONA")
@@ -12,18 +15,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Person {
     @Id
-    @Column(name = "idPerson")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPerson;
 
-    @Column(nullable = false, length = 15)
+    @Column(nullable = false, length = 16)
     private String rut;
 
-    @Column(nullable = false, length = 50)
+    @Column(name = "nombre", nullable = false, length = 90)
     private String name;
 
-    @Column(nullable = false, length = 12)
+    @Column(nullable = false, length = 15)
     private String phone;
 
-    @OneToOne(mappedBy = "person")
-    private User user;
+    @Column(nullable = false, length = 100)
+    private String company;
+
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<User> users;
 }

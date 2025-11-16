@@ -1,5 +1,6 @@
 package com.duocdevs.asistrack.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,8 +27,10 @@ public class Request {
     private User user;
 
     @OneToOne(mappedBy = "request")
+    @JsonManagedReference
     private Permission permission;
 
     @OneToOne(mappedBy = "request")
+    @JsonManagedReference
     private Vacation vacation;
 }

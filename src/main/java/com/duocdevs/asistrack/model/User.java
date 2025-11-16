@@ -1,5 +1,6 @@
 package com.duocdevs.asistrack.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,13 +16,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
-    @Column(nullable = false, length = 50, unique = true)
+    @Column(nullable = false, length = 90, unique = true)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "PERSON_idPerson")
+    @JsonBackReference
     private Person person;
 }

@@ -1,5 +1,6 @@
 package com.duocdevs.asistrack.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,15 +19,16 @@ public class Incident {
 
     @ManyToOne
     @JoinColumn(name = "INCIDENT_TYPE_idTyeIn")
+    @JsonBackReference
     private IncidentType incidentType;
 
-    @Column(nullable = false, length = 999)
+    @Column(nullable = false)
     private String reason;
 
-    @Column(nullable = false)
+    @Column(name = "hora_registro", nullable = false)
     private Date hour;
 
-    @Column(nullable = false)
+    @Column(name = "fecha", nullable = false)
     private Date date;
 
     @ManyToOne
