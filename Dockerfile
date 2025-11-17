@@ -1,19 +1,28 @@
 # Etapa de build
-FROM openjdk:22-jdk-slim AS build
-
-# Instalar Maven
-RUN apt-get update && apt-get install -y maven
+FROM eclipse-temurin:21 AS build
 
 WORKDIR /app
 COPY . .
 
-# Compilar el jar (modo producción)
-RUN mvn -B -DskipTests package
+# Dar permisos al mvnw (necesario en Linux)
+RUN chmod +x mvnw
+
+# Compilar sin tests
+RUN ./mvnw -B -DskipTests package
+
 
 # Etapa final
-FROM openjdk:22-jdk-slim
+FROM eclipse-temurin:21-jre
+
 WORKDIR /app
 
+# Copiar Oracle Wallet dentro del contenedor
+COPY walletAsistrack /opt/oracle/wallet
+
+# Configurar TNS_ADMIN dentro del contenedor
+ENV TNS_ADMIN=/opt/oracle/wallet
+
+# Copiar el .jar compilado
 COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8080
