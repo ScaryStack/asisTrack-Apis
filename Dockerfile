@@ -1,12 +1,21 @@
-FROM ubuntu:latest AS build
-RUN apt-get update
-RUN apt-get install openjdk-22-jdk -y
+# Etapa de build
+FROM openjdk:22-jdk-slim AS build
+
+# Instalar Maven
+RUN apt-get update && apt-get install -y maven
+
+WORKDIR /app
 COPY . .
 
-RUN ./mvnw spring-boot:run
+# Compilar el jar (modo producción)
+RUN mvn -B -DskipTests package
 
+# Etapa final
 FROM openjdk:22-jdk-slim
-EXPOSE 8080
-COPY --from=build /target/*.jar app.jar
+WORKDIR /app
 
-ENTRYPOINT ["java","-jar","/app.jar"]
+COPY --from=build /app/target/*.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
