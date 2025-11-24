@@ -19,9 +19,11 @@ public class Attendance {
 
     private String typeAttendance;
 
+    @Temporal(TemporalType.TIME)
     @Column(name = "fecha", nullable = false)
     private Date date;
 
+    @Temporal(TemporalType.TIME)
     @Column(name = "hora_registro", nullable = false)
     private Date hour;
 
