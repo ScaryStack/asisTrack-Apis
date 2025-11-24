@@ -17,6 +17,8 @@ public class Attendance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idAttendance;
 
+    private String typeAttendance;
+
     @Column(name = "fecha", nullable = false)
     private Date date;
 
@@ -31,3 +33,4 @@ public class Attendance {
     @JoinColumn(name = "USER_userId")
     private User user;
 }
+
