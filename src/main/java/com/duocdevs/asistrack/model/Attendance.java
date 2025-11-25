@@ -22,10 +22,12 @@ public class Attendance {
 
     private String typeAttendance;
 
+    @Temporal(TemporalType.TIME)
     @Column(name = "fecha", nullable = false)
     @JsonFormat(pattern = "dd-MM-yyyy'T'HH:mm:ss")
     private LocalDate date;
 
+    @Temporal(TemporalType.TIME)
     @Column(name = "hora_registro", nullable = false)
     @JsonFormat(pattern = "dd-MM-yyyy'T'HH:mm:ss")
     private LocalTime hour;
