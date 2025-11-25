@@ -19,14 +19,13 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(
-            @RequestParam String email,
-            @RequestParam String password) {
+    public ResponseEntity<String> login(@RequestBody Auth authRequest) {
 
-        return authService.autenticar(email, password)
+        return authService.autenticar(authRequest.getEmail(), authRequest.getContrasena())
                 .map(auth -> ResponseEntity.ok("Login exitoso"))
                 .orElse(ResponseEntity.status(401).body("Credenciales incorrectas"));
     }
+
 }
 
 
