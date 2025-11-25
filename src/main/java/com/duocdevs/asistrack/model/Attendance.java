@@ -1,10 +1,13 @@
 package com.duocdevs.asistrack.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -20,10 +23,12 @@ public class Attendance {
     private String typeAttendance;
 
     @Column(name = "fecha", nullable = false)
-    private Date date;
+    @JsonFormat(pattern = "dd-MM-yyyy'T'HH:mm:ss")
+    private LocalDate date;
 
     @Column(name = "hora_registro", nullable = false)
-    private Date hour;
+    @JsonFormat(pattern = "dd-MM-yyyy'T'HH:mm:ss")
+    private LocalTime hour;
 
     private String location;
     private String latitude;
