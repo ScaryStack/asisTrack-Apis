@@ -24,6 +24,20 @@ public class PermissionController {
         return permissionService.getPermissionById(id);
     }
 
+
+    @PutMapping("/{id}")
+    public Permission update(@PathVariable Integer id, @RequestBody Permission permission) {
+        Permission existing = permissionService.getPermissionById(id);
+
+        existing.setIdPermission(permission.getIdPermission());
+        existing.setRequest(permission.getRequest());
+        existing.setDate(permission.getDate());
+        existing.setHour(permission.getHour());
+        existing.setReason(permission.getReason());
+
+        return permissionService.savePermission(existing);
+    }
+
     @PostMapping
     public Permission save(@RequestBody Permission permission) {
         return permissionService.savePermission(permission);

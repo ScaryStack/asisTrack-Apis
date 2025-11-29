@@ -24,6 +24,21 @@ public class IncidentController {
         return incidentService.getIncidentById(id);
     }
 
+    @PutMapping("/{id}")
+    public Incident update(@PathVariable Integer id, @RequestBody Incident incident) {
+        Incident existing = incidentService.getIncidentById(id);
+
+        existing.setIdIncident(incident.getIdIncident());
+        existing.setHour(incident.getHour());
+        existing.setDate(incident.getDate());
+        existing.setReason(incident.getReason());
+        existing.setUser(incident.getUser());
+        existing.setIncidentType(incident.getIncidentType());
+
+        return incidentService.saveIncident(existing);
+    }
+
+
     @PostMapping
     public Incident save(@RequestBody Incident incident) {
         return incidentService.saveIncident(incident);

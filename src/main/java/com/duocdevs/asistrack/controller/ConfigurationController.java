@@ -24,6 +24,18 @@ public class ConfigurationController {
         return configurationService.getConfigurationById(id);
     }
 
+    @PutMapping("/{id}")
+    public Configuration update(@PathVariable Integer id, @RequestBody Configuration config) {
+        Configuration existing = configurationService.getConfigurationById(id);
+
+        existing.setIdConfig(config.getIdConfig());
+        existing.setUser(config.getUser());
+        existing.setTheme(config.getTheme());
+
+        return configurationService.saveConfiguration(existing);
+    }
+
+
     @PostMapping
     public Configuration save(@RequestBody Configuration config) {
         return configurationService.saveConfiguration(config);

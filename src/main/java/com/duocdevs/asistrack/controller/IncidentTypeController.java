@@ -24,6 +24,18 @@ public class IncidentTypeController {
         return incidentTypeService.getIncidentTypeById(id);
     }
 
+    @PutMapping("/{id}")
+    public IncidentType update(@PathVariable Integer id, @RequestBody IncidentType type) {
+        IncidentType existing = incidentTypeService.getIncidentTypeById(id);
+
+        existing.setIdTyeIn(type.getIdTyeIn());
+        existing.setType(type.getType());
+        existing.setIncidents(type.getIncidents());
+
+        return incidentTypeService.saveIncidentType(existing);
+    }
+
+
     @PostMapping
     public IncidentType save(@RequestBody IncidentType type) {
         return incidentTypeService.saveIncidentType(type);

@@ -24,6 +24,20 @@ public class VacationController {
         return vacationService.getVacationById(id);
     }
 
+    @PutMapping("/{id}")
+    public Vacation update(@PathVariable Integer id, @RequestBody Vacation vacation) {
+        Vacation existing = vacationService.getVacationById(id);
+
+        existing.setIdVacation(vacation.getIdVacation());
+        existing.setRequest(vacation.getRequest());
+        existing.setDateFinish(vacation.getDateFinish());
+        existing.setDateStart(vacation.getDateStart());
+        existing.setDaysAvailable(vacation.getDaysAvailable());
+
+        return vacationService.saveVacation(existing);
+    }
+
+
     @PostMapping
     public Vacation save(@RequestBody Vacation vacation) {
         return vacationService.saveVacation(vacation);

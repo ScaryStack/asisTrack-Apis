@@ -24,6 +24,21 @@ public class RequestController {
         return requestService.getRequestById(id);
     }
 
+    @PutMapping("/{id}")
+    public Request update(@PathVariable Integer id, @RequestBody Request request) {
+        Request existing = requestService.getRequestById(id);
+
+        existing.setIdRequest(request.getIdRequest());
+        existing.setCreationDate(request.getCreationDate());
+        existing.setStatus(request.getStatus());
+        existing.setUser(request.getUser());
+        existing.setVacation(request.getVacation());
+        existing.setPermission(request.getPermission());
+        existing.setRequestType(request.getRequestType());
+
+        return requestService.saveRequest(existing);
+    }
+
     @PostMapping
     public Request save(@RequestBody Request request) {
         return requestService.saveRequest(request);

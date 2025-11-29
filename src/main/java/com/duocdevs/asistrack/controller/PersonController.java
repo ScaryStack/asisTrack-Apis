@@ -24,6 +24,25 @@ public class PersonController {
         return personService.getPersonById(id);
     }
 
+    @PutMapping("/{id}")
+    public Person update(@PathVariable Integer id, @RequestBody Person person) {
+
+        // 1. Obtener persona existente
+        Person existing = personService.getPersonById(id);
+
+        // 2. Actualizar los campos (sin tocar IDs)
+        existing.setRut(person.getRut());
+        existing.setName(person.getName());
+        existing.setPhone(person.getPhone());
+        existing.setCompany(person.getCompany());
+
+        // Si actualizas users también:
+        existing.setUsers(person.getUsers());
+
+        // 3. Guardar
+        return personService.savePerson(existing);
+    }
+
     @PostMapping
     public Person save(@RequestBody Person person) {
         return personService.savePerson(person);
